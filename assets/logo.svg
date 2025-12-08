@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 100">
+  <defs>
+    <style>.cls-1{fill:#113e2d;font-family:Poppins, sans-serif;font-weight:700;font-size:48px;}.cls-2{fill:#ffc107;}</style>
+  </defs>
+  <path class="cls-2" d="M40,20 C40,20 20,40 20,60 C20,80 40,90 40,90 C40,90 60,80 60,60 C60,40 40,20 40,20 Z" />
+  <text x="80" y="65" class="cls-1">SAHAJ</text>
+  <text x="80" y="85" fill="#113e2d" font-family="Poppins, sans-serif" font-size="14px" letter-spacing="2px">AGRO INDUSTRIES</text>
+</svg>
