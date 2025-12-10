@@ -33,10 +33,22 @@ document.addEventListener('DOMContentLoaded', () => {
     // Mobile Menu
     menuToggle.addEventListener('click', () => {
         navMenu.classList.toggle('active');
+        menuToggle.classList.toggle('active');
     });
 
     navLinks.forEach(link => {
-        link.addEventListener('click', () => navMenu.classList.remove('active'));
+        link.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+            menuToggle.classList.remove('active');
+        });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!navMenu.contains(e.target) && !menuToggle.contains(e.target) && navMenu.classList.contains('active')) {
+            navMenu.classList.remove('active');
+            menuToggle.classList.remove('active');
+        }
     });
 
     // --- 2. Animations (GSAP) ---
@@ -137,17 +149,24 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // F. Product Cards Stagger
-    gsap.from(".product-card", {
-        scrollTrigger: {
-            trigger: ".products-grid",
-            start: "top 80%"
+    gsap.fromTo(".product-card", 
+        {
+            y: 60,
+            opacity: 0
         },
-        y: 60,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.2,
-        ease: "power2.out"
-    });
+        {
+            scrollTrigger: {
+                trigger: ".products-grid",
+                start: "top 80%"
+            },
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            stagger: 0.2,
+            ease: "power2.out",
+            clearProps: "all"
+        }
+    );
 
 
 
@@ -166,6 +185,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 3. Filter Filtering Logic ---
     const filterBtns = document.querySelectorAll('.filter-btn');
     const productCards = document.querySelectorAll('.product-card');
+
+    // Ensure all products are visible on initial load
+    productCards.forEach(card => {
+        card.style.display = 'block';
+        card.style.opacity = '1';
+        card.style.visibility = 'visible';
+    });
 
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
