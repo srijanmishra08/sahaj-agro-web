@@ -183,37 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- 3. Filter Filtering Logic ---
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const productCards = document.querySelectorAll('.product-card');
-
-    // Ensure all products are visible on initial load
-    productCards.forEach(card => {
-        card.style.display = 'block';
-        card.style.opacity = '1';
-        card.style.visibility = 'visible';
-    });
-
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            // Active Class
-            filterBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-
-            const filter = btn.getAttribute('data-filter');
-
-            productCards.forEach(card => {
-                const category = card.getAttribute('data-category');
-
-                if (filter === 'all' || filter === category) {
-                    gsap.to(card, { autoAlpha: 1, scale: 1, display: 'block', duration: 0.4 });
-                } else {
-                    gsap.to(card, { autoAlpha: 0, scale: 0.95, display: 'none', duration: 0.4 });
-                }
-            });
-
-            // Re-trigger ScrollTrigger refresh for layout changes
-            ScrollTrigger.refresh();
-        });
-    });
+    // --- 3. Filter Filtering Logic Removed ---
+    // All products are now shown by default and static.
 
 });
