@@ -137,6 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // F. Product Cards Stagger
+    gsap.set(".product-card", { opacity: 1, y: 0 }); // Ensure visible first
     gsap.from(".product-card", {
         scrollTrigger: {
             trigger: ".products-grid",
@@ -146,7 +147,8 @@ document.addEventListener('DOMContentLoaded', () => {
         opacity: 0,
         duration: 0.8,
         stagger: 0.2,
-        ease: "power2.out"
+        ease: "power2.out",
+        clearProps: "all"
     });
 
 

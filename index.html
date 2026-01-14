@@ -47,7 +47,7 @@
                 <li class="nav-item"><a href="#products" class="nav-link">Our Products</a></li>
                 <li class="nav-item"><a href="#process" class="nav-link">Process</a></li>
                 <li class="nav-item"><a href="#distribution" class="nav-link">Distribution</a></li>
-                <li class="nav-item"><a href="#contact" class="nav-link btn-contact">Contact & Orders</a></li>
+                <li class="nav-item"><a href="#contact" class="nav-link btn-contact">Contact Us</a></li>
             </ul>
         </div>
     </nav>
@@ -55,7 +55,9 @@
     <!-- Hero Section -->
     <header id="hero" class="hero-section">
         <div class="hero-bg-wrapper">
-            <img src="assets/images/hero.png" alt="Aerial view of lush green Urad fields" class="hero-bg-img">
+            <video autoplay muted loop playsinline class="hero-bg-video">
+                <source src="assets/images/hero-video.mp4" type="video/mp4">
+            </video>
         </div>
         <div class="hero-overlay"></div>
         <div class="container hero-content">
@@ -64,7 +66,7 @@
                 zero adulteration for 30+ years.</p>
 
             <div class="hero-actions">
-                <a href="#contact" class="btn btn-primary">Contact Sales</a>
+                <a href="#contact" class="btn btn-primary">Contact Us</a>
                 <a href="#" class="btn btn-outline" download>Download Product Sheet (PDF)</a>
             </div>
 
@@ -245,24 +247,17 @@
                 <div class="section-header text-center">
                     <span class="eyebrow">Our Catalogue</span>
                     <h2 class="section-title">Premium Urad Collection</h2>
-
-                    <div class="product-filters">
-                        <button class="filter-btn active" data-filter="all">All Products</button>
-                        <button class="filter-btn" data-filter="whole">Whole Urad</button>
-                        <button class="filter-btn" data-filter="split">Split Urad</button>
-                        <button class="filter-btn" data-filter="feed">Cattle Feed</button>
-                    </div>
                 </div>
 
                 <div class="products-grid">
                     <!-- Product 1 -->
                     <article class="product-card" data-category="whole">
                         <div class="product-img">
-                            <img src="assets/images/product-urad-closeup.png" alt="Urad Gota" loading="lazy">
+                            <img src="assets/images/urad-whole-white.jpg" alt="Whole White Urad Dal" loading="lazy">
                             <span class="badge">Best Seller</span>
                         </div>
                         <div class="product-info">
-                            <h3>Urad Gota</h3>
+                            <h3>Whole White Urad Dal</h3>
                             <p class="product-desc">Premium Whole Urad dal with retained skin for maximum nutrition and
                                 authentic taste.</p>
                             <ul class="specs-list">
@@ -280,10 +275,10 @@
                     <!-- Product 2 -->
                     <article class="product-card" data-category="split">
                         <div class="product-img">
-                            <img src="assets/images/product-urad-closeup.png" alt="Urad Mogar" loading="lazy">
+                            <img src="assets/images/urad-split-white.jpg" alt="Split White Urad Dal" loading="lazy">
                         </div>
                         <div class="product-info">
-                            <h3>Urad Mogar (Dal)</h3>
+                            <h3>Split White Urad Dal</h3>
                             <p class="product-desc">Split and skinned Urad dal. Creamy texture, perfect for batters,
                                 idlis, and dosas.</p>
                             <ul class="specs-list">
@@ -301,10 +296,10 @@
                     <!-- Product 3 -->
                     <article class="product-card" data-category="feed">
                         <div class="product-img">
-                            <img src="assets/images/product-urad-closeup.png" alt="Urad Chuni" loading="lazy">
+                            <img src="assets/images/cattle-feed.jpg" alt="Cattle Feed" loading="lazy">
                         </div>
                         <div class="product-info">
-                            <h3>Urad Chuni</h3>
+                            <h3>Cattle Feed</h3>
                             <p class="product-desc">High-protein cattle feed byproduct ensuring zero wastage and high
                                 value.</p>
                             <ul class="specs-list">
@@ -353,11 +348,6 @@
                             </div>
                         </div>
 
-                        <div class="regions-list">
-                            <p><strong>Key Markets:</strong> Maharashtra, Gujarat, Chhattisgarh, Madhya Pradesh</p>
-                            <p><strong>Export Ready:</strong> Contact us for FOB/CIF terms.</p>
-                        </div>
-
                         <a href="#contact" class="btn btn-primary mt-2">Become a Distributor &rarr;</a>
                     </div>
 
@@ -379,12 +369,6 @@
                             <div class="cert-badge">FSSAI</div>
                             <div class="cert-badge">ISO 9001</div>
                             <div class="cert-badge">Lab Tested</div>
-                        </div>
-
-                        <div class="help-box">
-                            <h4>Need Support?</h4>
-                            <p>Our sales team is available Mon-Sat.</p>
-                            <a href="tel:+917000205906" class="link-btn">+91 7000205906</a>
                         </div>
                     </div>
 
@@ -431,27 +415,24 @@
                     <div class="tagline">SIMPLY PURE, ALWAYS.</div>
                 </div>
 
-                <!-- Contact Details -->
+                <!-- Contact Form -->
                 <div class="footer-col contact-col">
-                    <h3>Get in Touch</h3>
-                    <ul class="footer-links">
-                        <li>
-                            <span class="icon">📧</span>
-                            <a href="mailto:sahajagroindustries0016@gmail.com">sahajagroindustries0016@gmail.com</a>
-                        </li>
-                        <li>
-                            <span class="icon">📞</span>
-                            <a href="tel:+917000205906">+91 7000205906</a>
-                        </li>
-                        <li>
-                            <span class="icon">📍</span>
-                            <span>Bhatapara, Chhattisgarh, India</span>
-                        </li>
-                        <li>
-                            <span class="icon">🕒</span>
-                            <span>Mon - Sat: 9:00 AM - 7:00 PM</span>
-                        </li>
-                    </ul>
+                    <h3>Contact Us</h3>
+                    <form class="contact-form" action="#" method="POST">
+                        <div class="form-group">
+                            <input type="text" name="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" name="phone" placeholder="Phone Number">
+                        </div>
+                        <div class="form-group">
+                            <textarea name="message" placeholder="Your Message" rows="3" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-sm">Send Message</button>
+                    </form>
                 </div>
 
                 <!-- Quick Links -->
