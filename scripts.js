@@ -4,6 +4,40 @@ gsap.registerPlugin(ScrollTrigger);
 
 document.addEventListener('DOMContentLoaded', () => {
 
+    // --- 0. Force Video Autoplay on Mobile ---
+    const heroVideo = document.getElementById('heroVideo');
+    if (heroVideo) {
+        // Function to attempt video play
+        const attemptPlay = () => {
+            heroVideo.muted = true; // Ensure muted for autoplay
+            const playPromise = heroVideo.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(error => {
+                    // Auto-play was prevented, try again on user interaction
+                    console.log('Autoplay prevented, waiting for user interaction');
+                });
+            }
+        };
+
+        // Try to play immediately
+        attemptPlay();
+
+        // Also try on various user interactions for stubborn mobile browsers
+        ['touchstart', 'click', 'scroll'].forEach(event => {
+            document.addEventListener(event, function playOnInteraction() {
+                attemptPlay();
+                document.removeEventListener(event, playOnInteraction);
+            }, { once: true, passive: true });
+        });
+
+        // Handle visibility change (when tab becomes active)
+        document.addEventListener('visibilitychange', () => {
+            if (!document.hidden) {
+                attemptPlay();
+            }
+        });
+    }
+
     // --- 1. Navbar Logic (Scroll State & Mobile) ---
     const navbar = document.querySelector('.navbar');
     const logoDesktop = document.querySelector('.logo-desktop');
@@ -16,19 +50,44 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
             navbar.classList.add('scrolled');
+            // Only toggle logos on desktop
             if (window.innerWidth > 768) {
-                // Ensure correct logos show on desktop scroll
                 logoDesktop.style.display = 'none';
                 logoMobile.style.display = 'block';
             }
         } else {
             navbar.classList.remove('scrolled');
+            // Only toggle logos on desktop
             if (window.innerWidth > 768) {
                 logoDesktop.style.display = 'block';
                 logoMobile.style.display = 'none';
             }
         }
     });
+
+    // Handle resize events for logo display
+    window.addEventListener('resize', () => {
+        if (window.innerWidth <= 768) {
+            // Mobile: always show mobile logo
+            logoDesktop.style.display = 'none';
+            logoMobile.style.display = 'block';
+        } else {
+            // Desktop: follow scroll state
+            if (window.scrollY > 50) {
+                logoDesktop.style.display = 'none';
+                logoMobile.style.display = 'block';
+            } else {
+                logoDesktop.style.display = 'block';
+                logoMobile.style.display = 'none';
+            }
+        }
+    });
+
+    // Initial check for mobile
+    if (window.innerWidth <= 768) {
+        logoDesktop.style.display = 'none';
+        logoMobile.style.display = 'block';
+    }
 
     // Mobile Menu
     menuToggle.addEventListener('click', () => {
