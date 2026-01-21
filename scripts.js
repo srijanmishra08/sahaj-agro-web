@@ -180,6 +180,200 @@ document.addEventListener('DOMContentLoaded', () => {
         clearProps: "all" /* Safe cleanup */
     });
 
+    // D2. Why Choose Us Section Animation
+    gsap.from(".feature-card", {
+        scrollTrigger: {
+            trigger: ".features-grid",
+            start: "top 85%"
+        },
+        y: 60,
+        opacity: 0,
+        duration: 0.8,
+        stagger: {
+            amount: 0.6,
+            grid: [2, 3],
+            from: "start"
+        },
+        ease: "power3.out",
+        clearProps: "all"
+    });
+
+    // D2b. Storytelling Section - Interactive Features & Visuals
+    const storyFeatures = document.querySelectorAll('.story-feature');
+    const visualSlides = document.querySelectorAll('.visual-slide');
+    const visualPanel = document.querySelector('.story-visual-panel');
+    const progressFill = document.querySelector('.progress-fill');
+
+    if (storyFeatures.length > 0 && visualSlides.length > 0) {
+        // Click handler for features
+        storyFeatures.forEach((feature, index) => {
+            feature.addEventListener('click', () => {
+                // Update active feature
+                storyFeatures.forEach(f => f.classList.remove('active'));
+                feature.classList.add('active');
+
+                // Update active slide
+                visualSlides.forEach(s => s.classList.remove('active'));
+                if (visualSlides[index]) {
+                    visualSlides[index].classList.add('active');
+                    // Scroll to the slide
+                    visualSlides[index].scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'nearest',
+                        inline: 'center'
+                    });
+                }
+
+                // Update progress bar
+                const progress = ((index + 1) / storyFeatures.length) * 100;
+                if (progressFill) {
+                    progressFill.style.width = progress + '%';
+                }
+            });
+        });
+
+        // Scroll handler for visual panel
+        if (visualPanel) {
+            visualPanel.addEventListener('scroll', () => {
+                const scrollLeft = visualPanel.scrollLeft;
+                const slideWidth = visualSlides[0]?.offsetWidth || 320;
+                const gap = 32; // 2rem gap
+                const currentIndex = Math.round(scrollLeft / (slideWidth + gap));
+
+                // Update active states
+                storyFeatures.forEach((f, i) => {
+                    f.classList.toggle('active', i === currentIndex);
+                });
+                visualSlides.forEach((s, i) => {
+                    s.classList.toggle('active', i === currentIndex);
+                });
+
+                // Update progress
+                const progress = ((currentIndex + 1) / storyFeatures.length) * 100;
+                if (progressFill) {
+                    progressFill.style.width = Math.min(progress, 100) + '%';
+                }
+            });
+        }
+
+        // Entrance animation for storytelling section
+        gsap.from(".story-content-inner", {
+            scrollTrigger: {
+                trigger: ".storytelling-section",
+                start: "top 80%"
+            },
+            x: -50,
+            opacity: 0,
+            duration: 1,
+            ease: "power3.out"
+        });
+
+        gsap.from(".story-feature", {
+            scrollTrigger: {
+                trigger: ".story-features",
+                start: "top 85%"
+            },
+            y: 30,
+            opacity: 0,
+            duration: 0.6,
+            stagger: 0.12,
+            ease: "power3.out"
+        });
+
+        gsap.from(".visual-slide", {
+            scrollTrigger: {
+                trigger: ".story-visual-panel",
+                start: "top 85%"
+            },
+            x: 60,
+            opacity: 0,
+            duration: 0.8,
+            stagger: 0.15,
+            ease: "power3.out"
+        });
+    }
+
+    // D2c. Product Showcase Animation (fallback for old structure)
+    gsap.from(".showcase-header", {
+        scrollTrigger: {
+            trigger: ".product-showcase",
+            start: "top 85%"
+        },
+        y: 30,
+        opacity: 0,
+        duration: 0.6,
+        ease: "power3.out"
+    });
+
+    gsap.from(".showcase-item", {
+        scrollTrigger: {
+            trigger: ".showcase-gallery",
+            start: "top 85%"
+        },
+        y: 50,
+        opacity: 0,
+        scale: 0.95,
+        duration: 0.8,
+        stagger: 0.15,
+        ease: "power3.out",
+        clearProps: "all"
+    });
+
+    // D3. Founder's Story Section Animation
+    const foundersTl = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".founders-section",
+            start: "top 80%"
+        }
+    });
+
+    foundersTl.from(".founder-img-wrapper img", {
+        x: -60,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out"
+    })
+    .from(".founder-frame", {
+        x: -40,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power3.out"
+    }, "-=0.7")
+    .from(".founder-accent", {
+        scale: 0,
+        opacity: 0,
+        duration: 0.6,
+        ease: "back.out(1.7)"
+    }, "-=0.5")
+    .from(".founder-content-col .eyebrow", {
+        y: 30,
+        opacity: 0,
+        duration: 0.6
+    }, "-=0.6")
+    .from(".founder-content-col .section-title", {
+        y: 30,
+        opacity: 0,
+        duration: 0.6
+    }, "-=0.4")
+    .from(".quote-icon", {
+        scale: 0,
+        rotation: -180,
+        opacity: 0,
+        duration: 0.6,
+        ease: "back.out(1.7)"
+    }, "-=0.3")
+    .from(".founder-message p", {
+        y: 25,
+        opacity: 0,
+        duration: 0.6,
+        stagger: 0.15
+    }, "-=0.3")
+    .from(".founder-signature", {
+        y: 20,
+        opacity: 0,
+        duration: 0.5
+    }, "-=0.2");
+
     // E. Process Timeline (Restored with Safety)
     gsap.from(".process-card", {
         scrollTrigger: {
