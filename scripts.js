@@ -181,114 +181,86 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // D2. Why Choose Us Section Animation
-    gsap.from(".feature-card", {
+    gsap.from(".why-feature-card", {
         scrollTrigger: {
-            trigger: ".features-grid",
+            trigger: ".why-choose-features",
             start: "top 85%"
         },
-        y: 60,
+        x: -40,
         opacity: 0,
-        duration: 0.8,
-        stagger: {
-            amount: 0.6,
-            grid: [2, 3],
-            from: "start"
-        },
+        duration: 0.6,
+        stagger: 0.1,
         ease: "power3.out",
         clearProps: "all"
     });
 
-    // D2b. Storytelling Section - Interactive Features & Visuals
-    const storyFeatures = document.querySelectorAll('.story-feature');
-    const visualSlides = document.querySelectorAll('.visual-slide');
-    const visualPanel = document.querySelector('.story-visual-panel');
-    const progressFill = document.querySelector('.progress-fill');
+    // D2b. Why Choose Us - Image Carousel with Auto-Rotate
+    const whyCarouselSlides = document.querySelectorAll('.why-carousel-slide');
+    const whyCarouselDots = document.querySelectorAll('.why-dot');
+    let whyCurrentSlide = 0;
+    let whyCarouselInterval = null;
+    const whyCarouselDelay = 4000; // 4 seconds between slides
 
-    if (storyFeatures.length > 0 && visualSlides.length > 0) {
-        // Click handler for features
-        storyFeatures.forEach((feature, index) => {
-            feature.addEventListener('click', () => {
-                // Update active feature
-                storyFeatures.forEach(f => f.classList.remove('active'));
-                feature.classList.add('active');
+    function updateWhyCarousel(index) {
+        // Update slides
+        whyCarouselSlides.forEach((slide, i) => {
+            slide.classList.toggle('active', i === index);
+        });
+        // Update dots
+        whyCarouselDots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === index);
+        });
+        whyCurrentSlide = index;
+    }
 
-                // Update active slide
-                visualSlides.forEach(s => s.classList.remove('active'));
-                if (visualSlides[index]) {
-                    visualSlides[index].classList.add('active');
-                    // Scroll to the slide
-                    visualSlides[index].scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'nearest',
-                        inline: 'center'
-                    });
-                }
+    function nextWhySlide() {
+        const nextIndex = (whyCurrentSlide + 1) % whyCarouselSlides.length;
+        updateWhyCarousel(nextIndex);
+    }
 
-                // Update progress bar
-                const progress = ((index + 1) / storyFeatures.length) * 100;
-                if (progressFill) {
-                    progressFill.style.width = progress + '%';
-                }
+    function startWhyCarousel() {
+        if (whyCarouselSlides.length > 0) {
+            whyCarouselInterval = setInterval(nextWhySlide, whyCarouselDelay);
+        }
+    }
+
+    function stopWhyCarousel() {
+        if (whyCarouselInterval) {
+            clearInterval(whyCarouselInterval);
+            whyCarouselInterval = null;
+        }
+    }
+
+    // Initialize carousel
+    if (whyCarouselSlides.length > 0) {
+        // Start auto-rotation
+        startWhyCarousel();
+
+        // Dot click handlers
+        whyCarouselDots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                stopWhyCarousel();
+                updateWhyCarousel(index);
+                startWhyCarousel();
             });
         });
 
-        // Scroll handler for visual panel
-        if (visualPanel) {
-            visualPanel.addEventListener('scroll', () => {
-                const scrollLeft = visualPanel.scrollLeft;
-                const slideWidth = visualSlides[0]?.offsetWidth || 320;
-                const gap = 32; // 2rem gap
-                const currentIndex = Math.round(scrollLeft / (slideWidth + gap));
-
-                // Update active states
-                storyFeatures.forEach((f, i) => {
-                    f.classList.toggle('active', i === currentIndex);
-                });
-                visualSlides.forEach((s, i) => {
-                    s.classList.toggle('active', i === currentIndex);
-                });
-
-                // Update progress
-                const progress = ((currentIndex + 1) / storyFeatures.length) * 100;
-                if (progressFill) {
-                    progressFill.style.width = Math.min(progress, 100) + '%';
-                }
-            });
+        // Pause on hover
+        const carouselContainer = document.querySelector('.why-carousel-container');
+        if (carouselContainer) {
+            carouselContainer.addEventListener('mouseenter', stopWhyCarousel);
+            carouselContainer.addEventListener('mouseleave', startWhyCarousel);
         }
 
-        // Entrance animation for storytelling section
-        gsap.from(".story-content-inner", {
+        // Entrance animation for carousel
+        gsap.from(".why-carousel-container", {
             scrollTrigger: {
-                trigger: ".storytelling-section",
-                start: "top 80%"
-            },
-            x: -50,
-            opacity: 0,
-            duration: 1,
-            ease: "power3.out"
-        });
-
-        gsap.from(".story-feature", {
-            scrollTrigger: {
-                trigger: ".story-features",
-                start: "top 85%"
-            },
-            y: 30,
-            opacity: 0,
-            duration: 0.6,
-            stagger: 0.12,
-            ease: "power3.out"
-        });
-
-        gsap.from(".visual-slide", {
-            scrollTrigger: {
-                trigger: ".story-visual-panel",
+                trigger: ".why-choose-visual",
                 start: "top 85%"
             },
             x: 60,
             opacity: 0,
-            duration: 0.8,
-            stagger: 0.15,
+            duration: 1,
             ease: "power3.out"
         });
     }
