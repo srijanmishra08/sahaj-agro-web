@@ -1696,11 +1696,6 @@ h4 {
 
 /* Product Showcase Section */
 .product-showcase-section {
-    background: linear-gradient(rgba(13, 46, 33, 0.9), rgba(13, 46, 33, 0.85)), 
-                url('assets/images/product-urad-closeup.png');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
     padding: 0;
 }
 
@@ -1713,12 +1708,10 @@ h4 {
 .showcase-card {
     position: relative;
     overflow: hidden;
-    display: flex;
-    flex-direction: column;
 }
 
 .showcase-image {
-    height: 320px;
+    height: 450px;
     overflow: hidden;
     position: relative;
 }
@@ -1744,66 +1737,16 @@ h4 {
     right: 20px;
     background: var(--primary-color);
     color: #fff;
-    padding: 10px 20px;
+    padding: 12px 24px;
     border-radius: 4px;
     font-weight: 600;
-    font-size: 1rem;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    font-size: 1.1rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .your-brand-label {
     text-transform: uppercase;
     letter-spacing: 1px;
-}
-
-.showcase-content {
-    background: var(--primary-color);
-    padding: 2rem;
-    text-align: center;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.showcase-content p {
-    color: #fff;
-    font-size: 0.95rem;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-    max-width: 280px;
-}
-
-.btn-showcase {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    background: #e85a2c;
-    color: #fff;
-    padding: 12px 24px;
-    border-radius: 25px;
-    font-weight: 600;
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    transition: all 0.3s ease;
-    border: none;
-    cursor: pointer;
-}
-
-.btn-showcase:hover {
-    background: #d14a1e;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 20px rgba(232, 90, 44, 0.4);
-}
-
-.btn-showcase svg {
-    transition: transform 0.3s ease;
-}
-
-.btn-showcase:hover svg {
-    transform: translateX(4px);
 }
 
 @media (max-width: 992px) {
@@ -1812,21 +1755,13 @@ h4 {
     }
     
     .showcase-image {
-        height: 280px;
+        height: 350px;
     }
 }
 
 @media (max-width: 768px) {
     .showcase-image {
-        height: 240px;
-    }
-    
-    .showcase-content {
-        padding: 1.5rem;
-    }
-    
-    .showcase-content p {
-        font-size: 0.9rem;
+        height: 280px;
     }
 }
 
