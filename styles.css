@@ -199,7 +199,7 @@ h4 {
 }
 
 .brand-logo img {
-    height: 48px;
+    height: 65px;
     transition: all 0.3s;
 }
 
@@ -211,7 +211,7 @@ h4 {
 
     .brand-logo img.logo-mobile {
         display: block !important;
-        height: 40px;
+        height: 50px;
     }
 }
 
@@ -1907,6 +1907,17 @@ h4 {
     font-weight: 700;
 }
 
+/* FAQ Section Styling */
+.faq-col .eyebrow {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.faq-col .section-title {
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+}
+
 .accordion details {
     border-bottom: 1px solid #ddd;
     margin-bottom: 1rem;
@@ -2172,6 +2183,116 @@ h4 {
 
 .contact-form .btn {
     align-self: flex-start;
+}
+
+/* Terms Checkbox */
+.terms-checkbox {
+    margin-bottom: 1rem;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.checkbox-label input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-top: 2px;
+    accent-color: var(--accent-color);
+    cursor: pointer;
+}
+
+.terms-text {
+    line-height: 1.4;
+}
+
+.terms-link {
+    color: var(--accent-color);
+    text-decoration: underline;
+}
+
+.terms-link:hover {
+    color: var(--accent-light);
+}
+
+/* Terms Modal */
+.terms-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.terms-modal-content {
+    background: #fff;
+    max-width: 700px;
+    max-height: 80vh;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+}
+
+.terms-modal-content h2 {
+    background: var(--primary-color);
+    color: #fff;
+    padding: 1.5rem 2rem;
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.terms-modal-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 2rem;
+    color: #fff;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.terms-modal-close:hover {
+    color: var(--accent-color);
+}
+
+.terms-body {
+    padding: 2rem;
+    overflow-y: auto;
+    max-height: calc(80vh - 80px);
+    color: var(--text-body);
+}
+
+.terms-body h4 {
+    color: var(--primary-color);
+    margin: 1.5rem 0 0.5rem;
+    font-size: 1.05rem;
+}
+
+.terms-body p {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.terms-body ul {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+    list-style: disc;
+}
+
+.terms-body ul li {
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
 }
 
 /* Responsive */
